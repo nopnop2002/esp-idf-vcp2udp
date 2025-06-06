@@ -14,10 +14,6 @@ Other UART-USB converter chips are not supported.
 - https://components.espressif.com/components/espressif/usb_host_cp210x_vcp   
 - https://components.espressif.com/components/espressif/usb_host_ftdi_vcp   
 
-# BLE host stack
-ESP-IDF can use either the ESP-Bluedroid host stack or the ESP-NimBLE host stack.   
-The differences between the two are detailed [here](https://docs.espressif.com/projects/esp-idf/en/stable/esp32/api-guides/ble/overview.html).   
-This project uses the ESP-NimBLE host stack.   
 
 # Software requirements
 ESP-IDF V5.0 or later.   
@@ -120,8 +116,7 @@ The Arduino sketch inputs data with LF as the terminator.
 So strings from the ESP32 to the Arduino must be terminated with LF (0x0a).   
 If the string output from the ESP32 to the Arduino is not terminated with LF (0x0a), the Arduino sketch will complete the input with a timeout.   
 The default input timeout for Arduino sketches is 1000 milliseconds.   
-The ESP32 SPP driver always sends data to the application with CR+LF as the termination character.   
-This project changes the termination character from CR+LF to LF and sends the data to Arduino.   
+If the string received from UDP does not have a LF at the end, this project will add a LF to the end and send it to Arduino.   
 The Arduino sketch will echo back the string it reads.   
 ```
 I (78212) VCP: Sending data through CdcAcmDevice
@@ -132,7 +127,7 @@ I (78232) VCP: 0x3fcba0a8   61 62 63 64 65 66 67 0d  0a                       |a
 
 # Wireing   
 Arduino Uno connects via USB connector.   
-The USB port on the ESP32S3 development board does not function as a USB-HOST.   
+The USB port on the ESP32S2/S3 development board does not function as a USB-HOST.   
 
 ```
 +---------+  +-------------+  +-----------+
