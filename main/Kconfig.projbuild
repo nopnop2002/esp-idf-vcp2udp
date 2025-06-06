@@ -1,0 +1,103 @@
+menu "Application Configuration"
+
+	menu "WiFi Setting"
+
+		config ESP_WIFI_SSID
+			string "WiFi SSID"
+			default "myssid"
+			help
+				SSID (network name) for the example to connect to.
+
+		config ESP_WIFI_PASSWORD
+			string "WiFi Password"
+			default "mypassword"
+			help
+				WiFi password (WPA or WPA2) for the example to use.
+
+		config ESP_MAXIMUM_RETRY
+			int "Maximum retry"
+			default 5
+			help
+				Set the Maximum retry to avoid station reconnecting to the AP unlimited when the AP is really inexistent.
+
+		config MDNS_HOSTNAME
+			string "mDNS hostname"
+			default "esp32"
+			help
+				mDNS hostname
+
+	endmenu
+
+	menu "VCP Setting"
+
+		config VCP_BAUDRATE
+			int "VCP communication speed"
+			range 1200 115200
+			default 115200
+			help
+				VCP communication speed.
+
+		config VCP_STOP_BITS
+			int "VCP communication stop bits"
+			range 0 2
+			default 0
+			help
+				VCP communication stop bits. 0: 1 stopbit, 1: 1.5 stopbits, 2: 2 stopbits
+
+		config VCP_PARITY
+			int "VCP communication parity"
+			range 0 4
+			default 0
+			help
+				VCP communication parity. 0: None, 1: Odd, 2: Even, 3: Mark, 4: Space
+
+		config VCP_DATA_BITS
+			int "VCP communication data bits"
+			default 8
+			help
+				VCP communication data bits.
+
+	endmenu
+
+	menu "UDP Setting"
+
+		choice UDP_ADDRESS
+			bool "Select UDP Send Address"
+			default UDP_LIMITED_BROADCAST
+			help
+				Select Send Addrss.
+			config UDP_LIMITED_BROADCAST
+				bool "Limited broadcast address"
+			config UDP_DIRECTED_BROADCAST
+				bool "Directed broadcast address"
+			config UDP_MULTICAST
+				bool "Multicast address"
+			config UDP_UNICAST
+				bool "Unicast address"
+		endchoice
+
+		config UDP_MULTICAST_ADDRESS
+			depends on UDP_MULTICAST
+			string "Multicast address"
+			default "239.255.255.255"
+
+		config UDP_UNICAST_ADDRESS
+			depends on UDP_UNICAST
+			string "Unicast address"
+			default "192.168.10.20"
+
+		config UDP_SEND_PORT
+			int "UDP Send Port"
+			default 8080
+			help
+				Port to send data
+
+		config UDP_LISTEN_PORT
+			int "UDP Listen Port"
+			default 9090
+			help
+				Port listening for data
+
+	endmenu
+
+endmenu
