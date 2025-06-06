@@ -183,7 +183,7 @@ I searched for a GUI tool that can be used with ubuntu or debian, but I couldn't
 We can forward the UART input to rsyslogd on your Linux machine.
 ```
 +-------------+         +-------------+         +-------------+ 
-| Arduino Uno |--(UDB)->|    ESP32    |--(UDP)->|  rsyslogd   |
+| Arduino Uno |--(USB)->|    ESP32    |--(UDP)->|  rsyslogd   |
 +-------------+         +-------------+         +-------------+ 
 ```
 
