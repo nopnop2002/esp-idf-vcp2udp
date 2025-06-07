@@ -18,7 +18,6 @@
 #include "esp_event.h"
 #include "esp_log.h"
 #include "nvs_flash.h"
-#include "driver/uart.h"
 #include "mdns.h"
 
 static const char *TAG = "MAIN";
