@@ -186,7 +186,7 @@ I used [this](https://play.google.com/store/apps/details?id=com.jca.udpsendrecei
 
 
 # Using linux rsyslogd as logger   
-We can forward the UART input to rsyslogd on your Linux machine.
+We can forward the USB input to rsyslogd on your Linux machine.
 ```
 +-------------+         +-------------+         +-------------+ 
 | Arduino Uno |--(USB)->|    ESP32    |--(UDP)->|  rsyslogd   |
